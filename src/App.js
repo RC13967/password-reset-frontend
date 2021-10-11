@@ -16,10 +16,10 @@ function App() {
           <Navbar.Brand href="/">Reset Password App</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="me-auto">
-              <Link to="/Forgot">Forgot password</Link>
-              <Nav.Link href="/Login">Login</Nav.Link>
-              <Nav.Link href="/SignUp">Sign up</Nav.Link>
+            <Nav className="nav-links">
+              <Link to="/Forgot" className="nav-link">Forgot password</Link>
+              <Link to="/Login" className="nav-link">Login</Link>
+              <Link to="/SignUp" className="nav-link">Sign up</Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
@@ -276,10 +276,10 @@ function Login() {
               </p>
               <Button variant="success" type="submit">
                 Login
-              </Button>
-              <Nav.Link href="/Forgot" >
+              </Button><br/>
+              <Link to="/Forgot" className="link">
                 Forgot password?
-              </Nav.Link>
+              </Link><br/>
               <Button variant="primary" className="centre-button" onClick={() => history.push('/SignUp')}>
                 Create account
               </Button>
