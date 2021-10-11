@@ -169,6 +169,7 @@ function OpenedEmail() {
 }
 
 function SignUp() {
+  const history = useHistory();
   const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
