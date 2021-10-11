@@ -60,7 +60,7 @@ function Home() {
   return (
     <Container className="container">
       <div className="home-header">Welcome!</div>
-      <div className = "home-content">Login, signup or reset password</div>
+      <div className="home-content">Login, signup or reset password</div>
     </Container>
   )
 }
@@ -179,6 +179,7 @@ function SignUp() {
     if (!email || !password) {
       setError('please enter the required(*) fields');
     } else {
+      setMessage("waiting")
       createAccount();
     }
   }
@@ -198,32 +199,42 @@ function SignUp() {
     <Container className="container">
       <Row>
         <Col xs='auto' sm='7' md='6' lg='4'>
-          {message ? message :
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>
-                  <span className="error">*</span>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
-                <Form.Text className="text-muted">
-                  We'll never share your email with anyone else.
-                </Form.Text>
-              </Form.Group>
+          {message === "waiting" ?
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+            :
 
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>
-                  <span className="error">*</span>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
-              </Form.Group>
-              <p className="error">
-                {error}
-              </p>
-              <Button variant="primary" type="submit">
-                Sign Up
-              </Button><br/>
-              <Form.Text className="text-muted">Have an account?</Form.Text><br/>
-              <Button variant="success" type="submit" onClick={()=>history.push("/Login")}>Log in</Button>
-            </Form>
+            (message ? message :
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>
+                    <span className="error">*</span>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
+                  <Form.Text className="text-muted">
+                    We'll never share your email with anyone else.
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>
+                    <span className="error">*</span>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
+                </Form.Group>
+                <p className="error">
+                  {error}
+                </p>
+                <Button variant="primary" type="submit">
+                  Sign Up
+                </Button><br />
+                <Form.Text className="text-muted">Have an account?</Form.Text><br />
+                <Button variant="success" type="submit" onClick={() => history.push("/Login")}>Log in</Button>
+              </Form>
+            )
           }
+
+
+
         </Col>
       </Row>
     </Container>
@@ -238,6 +249,7 @@ function Login() {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (email && password) {
+      setMessage("waiting");
       loginAccount();
     }
     else {
@@ -260,7 +272,12 @@ function Login() {
     <Container className="container">
       <Row>
         <Col xs='auto' sm='7' md='6' lg='4'>
-          {message ? message :
+        {message === "waiting" ?
+            <Spinner animation="border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>
+            :
+          (message ? message :
             <Form onSubmit={handleSubmit}>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>
@@ -277,14 +294,15 @@ function Login() {
               </p>
               <Button variant="success" type="submit">
                 Login
-              </Button><br/>
+              </Button><br />
               <Link to="/Forgot" className="link">
                 Forgot password?
-              </Link><br/>
+              </Link><br />
               <Button variant="primary" className="centre-button" onClick={() => history.push('/SignUp')}>
                 Create account
               </Button>
             </Form>
+  )
           }
         </Col>
       </Row>
