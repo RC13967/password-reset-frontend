@@ -17,7 +17,7 @@ function App() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link href="/Forgot">Forgot password</Nav.Link>
+              <Link to="/Forgot">Forgot password</Link>
               <Nav.Link href="/Login">Login</Nav.Link>
               <Nav.Link href="/SignUp">Sign up</Nav.Link>
             </Nav>
