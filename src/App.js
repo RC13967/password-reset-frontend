@@ -220,7 +220,7 @@ function SignUp() {
                 Sign Up
               </Button><br/>
               <Form.Text className="text-muted">Have an account?</Form.Text><br/>
-              <Button variant="success" type="submit">Log in</Button>
+              <Button variant="success" type="submit" onClick={()=>history.push("/Login")}>Log in</Button>
             </Form>
           }
         </Col>
