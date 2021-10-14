@@ -128,7 +128,7 @@ function OpenedEmail() {
 
   }
   const [error, setError] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState('waiting');
   const { email, randomString } = useParams();
   const [password, setPassword] = useState('');
   function getMessage() {
@@ -156,10 +156,10 @@ function OpenedEmail() {
   }, []);
   return (
     <Container className="container" >
-      {message ? (message === 'waiting' ? <Spinner animation="border" role="status">
+      {message === 'waiting' ? <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
-      </Spinner> : message)
-        : (
+      </Spinner> : (message=="retrieve account" ?
+        
           <Row>
             <Col xs='auto' sm='7' md='6' lg='4' >
               <Form onSubmit={handleSubmit} >
@@ -176,6 +176,7 @@ function OpenedEmail() {
               </Form>
             </Col>
           </Row>
+          : message
         )
       }
     </Container>
