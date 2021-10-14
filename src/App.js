@@ -119,8 +119,15 @@ function Forgot() {
 function OpenedEmail() {
   const handleSubmit = (event) => {
     event.preventDefault();
-    updatePassword();
+    if (password) {
+      setMessage("waiting");
+      updatePassword();
+    } else {
+      setError("please enter the password")
+    }
+
   }
+  const [error, setError] = useState('');
   const [message, setMessage] = useState('');
   const { email, randomString } = useParams();
   const [password, setPassword] = useState('');
@@ -149,20 +156,27 @@ function OpenedEmail() {
   }, []);
   return (
     <Container className="container" >
-      {message !== "retrieve account" ? message :
-        <Row>
-          <Col xs='auto' sm='7' md='6' lg='4' >
-            <Form onSubmit={handleSubmit} >
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Password</Form.Label>
-                <Form.Control type="password" placeholder="Enter password" onChange={(event) => setPassword(event.target.value)} />
-              </Form.Group>
-              <Button variant="primary" type="submit"  >
-                Submit
-              </Button><br />
-            </Form>
-          </Col>
-        </Row>
+      {message ? (message === 'waiting' ? <Spinner animation="border" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </Spinner> : message)
+        : (
+          <Row>
+            <Col xs='auto' sm='7' md='6' lg='4' >
+              <Form onSubmit={handleSubmit} >
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Enter password" onChange={(event) => setPassword(event.target.value)} />
+                </Form.Group>
+                <div className="error">
+                  {error}
+                </div>
+                <Button variant="primary" type="submit"  >
+                  Submit
+                </Button><br />
+              </Form>
+            </Col>
+          </Row>
+        )
       }
     </Container>
   )
@@ -272,37 +286,37 @@ function Login() {
     <Container className="container">
       <Row>
         <Col xs='auto' sm='7' md='6' lg='4'>
-        {message === "waiting" ?
+          {message === "waiting" ?
             <Spinner animation="border" role="status">
               <span className="visually-hidden">Loading...</span>
             </Spinner>
             :
-          (message ? message :
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>
-                  <span className="error">*</span>Email address</Form.Label>
-                <Form.Control type="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
-              </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicPassword">
-                <Form.Label>
-                  <span className="error">*</span>Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
-              </Form.Group>
-              <p className="error">
-                {error}
-              </p>
-              <Button variant="success" type="submit">
-                Login
-              </Button><br />
-              <Link to="/Forgot" className="link">
-                Forgot password?
-              </Link><br />
-              <Button variant="primary" className="centre-button" onClick={() => history.push('/SignUp')}>
-                Create account
-              </Button>
-            </Form>
-  )
+            (message ? message :
+              <Form onSubmit={handleSubmit}>
+                <Form.Group className="mb-3" controlId="formBasicEmail">
+                  <Form.Label>
+                    <span className="error">*</span>Email address</Form.Label>
+                  <Form.Control type="email" placeholder="Enter email" onChange={(event) => setEmail(event.target.value)} />
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formBasicPassword">
+                  <Form.Label>
+                    <span className="error">*</span>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" onChange={(event) => setPassword(event.target.value)} />
+                </Form.Group>
+                <p className="error">
+                  {error}
+                </p>
+                <Button variant="success" type="submit">
+                  Login
+                </Button><br />
+                <Link to="/Forgot" className="link">
+                  Forgot password?
+                </Link><br />
+                <Button variant="primary" className="centre-button" onClick={() => history.push('/SignUp')}>
+                  Create account
+                </Button>
+              </Form>
+            )
           }
         </Col>
       </Row>
