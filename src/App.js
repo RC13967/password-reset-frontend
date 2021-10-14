@@ -145,8 +145,7 @@ function OpenedEmail() {
 
   useEffect(() => {
     getMessage();
-    // eslint-disable-next-line
-  }, []);
+  }, [email]);
   return (
     <Container className="container" >
       {message !== "retrieve account" ? message :
