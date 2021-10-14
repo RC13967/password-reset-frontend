@@ -117,35 +117,35 @@ function Forgot() {
   )
 }
 function OpenedEmail() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    updatePassword();
-  }
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   updatePassword();
+  // }
   const [message, setMessage] = useState('');
   const { email, randomString } = useParams();
   const [password, setPassword] = useState('');
-  function getMessage() {
-    fetch(`https://password-reset-ranjith.herokuapp.com/retrieveAccount/${email}/${randomString}`, {
-      method: "GET",
-    })
-      .then((data) => data.json())
-      .then((userdata) => setMessage(userdata.message));
-  }
-  function updatePassword() {
-    fetch(`https://password-reset-ranjith.herokuapp.com/resetPassword/${email}/${randomString}`, {
-      method: "PUT",
-      body: JSON.stringify({ newPassword: password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((data) => data.json())
-      .then((userdata) => setMessage(userdata.message))
-  };
+  // function getMessage() {
+  //   fetch(`https://password-reset-ranjith.herokuapp.com/retrieveAccount/${email}/${randomString}`, {
+  //     method: "GET",
+  //   })
+  //     .then((data) => data.json())
+  //     .then((userdata) => setMessage(userdata.message));
+  // }
+  // function updatePassword() {
+  //   fetch(`https://password-reset-ranjith.herokuapp.com/resetPassword/${email}/${randomString}`, {
+  //     method: "PUT",
+  //     body: JSON.stringify({ newPassword: password }),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((data) => data.json())
+  //     .then((userdata) => setMessage(userdata.message))
+  // };
 
-  useEffect(() => {
-    getMessage();
-  }, [email]);
+  // useEffect(() => {
+  //   getMessage();
+  // }, [email]);
   return (
     <Container className="container" >
       {message !== "retrieve account" ? message :
@@ -163,6 +163,7 @@ function OpenedEmail() {
           </Col>
         </Row>
       }
+      Hi
     </Container>
   )
 }
