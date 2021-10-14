@@ -1,3 +1,5 @@
 [[redirects]]
-  from = "/Login"
-  to = "https://password-reset-ranjith.netlify.app/Login"
+from = "/*"
+to = "/"
+status = 200
+
