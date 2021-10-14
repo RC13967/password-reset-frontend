@@ -46,7 +46,7 @@ function Routes() {
         <Route path="/Forgot">
           <Forgot />
         </Route>
-        <Route path="/:email/:randomString">
+        <Route path="/retrieveAccount/:email/:randomString">
           <OpenedEmail />
         </Route>
         <Route path="/">
