@@ -145,7 +145,7 @@ function OpenedEmail() {
 
   useEffect(() => {
     getMessage();
-  }, [email]);
+  }, []);
   return (
     <Container className="container" >
       {message !== "retrieve account" ? message :
