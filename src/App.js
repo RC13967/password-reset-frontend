@@ -184,7 +184,7 @@ function SignUp() {
     }
   }
   function createAccount() {
-    fetch("https://password-reset-ranjith.herokuapp.com/users/signup", {
+    fetch("https://password-reset-ranjith.herokuapp.com/users/SignUp", {
       method: "POST",
       body: JSON.stringify({ email: email, password: password }),
       headers: {
@@ -257,7 +257,7 @@ function Login() {
     }
   }
   function loginAccount() {
-    fetch("https://password-reset-ranjith.herokuapp.com/users/login", {
+    fetch("https://password-reset-ranjith.herokuapp.com/users/Login", {
       method: "POST",
       body: JSON.stringify({ email: email, password: password }),
       headers: {
