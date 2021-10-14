@@ -1,4 +1,5 @@
 import "./App.css";
+import "./netlify.toml";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState, useEffect, createContext, useContext } from "react";
 import React from "react";
