@@ -158,7 +158,7 @@ function OpenedEmail() {
     <Container className="container" >
       {message === 'waiting' ? <Spinner animation="border" role="status">
         <span className="visually-hidden">Loading...</span>
-      </Spinner> : (message=="retrieve account" ?
+      </Spinner> : (message==="retrieve account" ?
         
           <Row>
             <Col xs='auto' sm='7' md='6' lg='4' >
