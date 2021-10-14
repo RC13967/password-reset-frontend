@@ -145,6 +145,7 @@ function OpenedEmail() {
 
   useEffect(() => {
     getMessage();
+    // eslint-disable-next-line
   }, []);
   return (
     <Container className="container" >
